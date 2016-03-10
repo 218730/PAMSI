@@ -1,4 +1,6 @@
-#include "tablica.hh"
+#include "../inc/tablica.hh"
+
+using namespace std;
 
 tablica::tablica(){
     k = 10;
@@ -19,10 +21,14 @@ void tablica::wyswietlanie(){
     }
 }
 
-void tablica::dopisz(int dana)
+void tablica::dopisz()
 {
         srand(time(NULL));
-    for(int i=0;i<100;i++){
+		int random = 0;
+	
+    for(int i=0;i<100000000;i++){
+                random = rand()%12;
+
      if(liczbaEl>=k)
        {
             int *TymTab = new int [k]; 
@@ -31,7 +37,7 @@ void tablica::dopisz(int dana)
                 TymTab[a] = tab[a];
             }
 
-            k += 2; //Ile nowych kolumn tablicy chcemy stworzyć za jednym razem
+            k *= 2; //Ile nowych kolumn tablicy chcemy stworzyć za jednym razem
             tab = new int[k];  //Tworzenie nowej tablicy z nową ilością kolumn
 
                 for(int b=0; b<liczbaEl;b++)
@@ -39,14 +45,19 @@ void tablica::dopisz(int dana)
                     tab[b] = TymTab[b];
                 }
 
-	tab[i] = dana;
-        delete[] TymTab;
+	tab[i] = random;
+        delete TymTab;
         liczbaEl++;
         }
     else
         {
-	tab[i]=dana;
+	tab[i] = random;
         liczbaEl++;
         }
     }
+}
+
+void tablica::wielkosc(){
+    cout << "Wielkosc tablicy: " << k << endl;
+    cout << "Ilosc elementow: " << liczbaEl << endl;
 }

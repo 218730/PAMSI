@@ -1,21 +1,18 @@
-#include "tablica.hh"
+#include "../inc/tablica.hh"
+
+using namespace std;
 
 int main(){
-        srand(time(NULL));
+        
     tablica t;
     clock_t start,stop;
-
-    //t.wyswietlanie();
-        
-    cout << endl;    
-    
-    for(int i=0;i<1;i++){
+            
         start=clock();
-    t.dopisz(rand()%12);
+    t.dopisz();
         stop=clock();
-    //t.wyswietlanie();
+
+            cout << "Czas dzialania skryptu: " << 1000./CLOCKS_PER_SEC*(stop-start) << "[ms]" << endl << endl;
+            t.wielkosc();
     
-            cout << "Czas dzialania skryptu: " << 1./CLOCKS_PER_SEC*(stop-start) << "[s]" << endl << endl;
-    }
 return 0;   
 }
