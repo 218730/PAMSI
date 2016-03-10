@@ -16,5 +16,6 @@ public:
        tablica(); //Konstruktor
        ~tablica(); //Dekonstruktor
        void wyswietlanie(); //Metoda wyświetlająca tablicę
-       void dopisz(int dana); //Metoda powiększająca i dopisująca element do tablicy
+       void dopisz(); //Metoda powiększająca i dopisująca element do tablicy
+       void wielkosc();
 };
