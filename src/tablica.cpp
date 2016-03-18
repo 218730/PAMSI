@@ -12,7 +12,7 @@ tablica::tablica(){
 }
 
 tablica::~tablica(){
-    delete tab;
+    delete [] tab;
 }
 
 void tablica::wyswietlanie(){
@@ -26,8 +26,8 @@ void tablica::dopisz()
         srand(time(NULL));
 		int random = 0;
 	
-    for(int i=0;i<100000000;i++){
-                random = rand()%12;
+    for(int i=0;i<1000000000;i++){
+                random = rand()%1000;
 
      if(liczbaEl>=k)
        {
@@ -38,15 +38,15 @@ void tablica::dopisz()
             }
 
             k *= 2; //Ile nowych kolumn tablicy chcemy stworzyć za jednym razem
+			delete [] tab;
             tab = new int[k];  //Tworzenie nowej tablicy z nową ilością kolumn
 
-                for(int b=0; b<liczbaEl;b++)
-                {
-                    tab[b] = TymTab[b];
-                }
+		for(int b=0; b<liczbaEl;b++){
+			tab[b] = TymTab[b];
+		}
 
 	tab[i] = random;
-        delete TymTab;
+        delete [] TymTab;
         liczbaEl++;
         }
     else
@@ -59,5 +59,5 @@ void tablica::dopisz()
 
 void tablica::wielkosc(){
     cout << "Wielkosc tablicy: " << k << endl;
-    cout << "Ilosc elementow: " << liczbaEl << endl;
+    cout << "Ilosc elementow:  " << liczbaEl << endl;
 }

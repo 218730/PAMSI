@@ -17,5 +17,5 @@ public:
        ~tablica(); //Dekonstruktor
        void wyswietlanie(); //Metoda wyświetlająca tablicę
        void dopisz(); //Metoda powiększająca i dopisująca element do tablicy
-       void wielkosc();
+       void wielkosc(); //Metoda wypisująca informacje na temat tablicy
 };

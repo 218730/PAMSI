@@ -13,6 +13,5 @@ int main(){
 
             cout << "Czas dzialania skryptu: " << 1000./CLOCKS_PER_SEC*(stop-start) << "[ms]" << endl << endl;
             t.wielkosc();
-    
 return 0;   
 }
