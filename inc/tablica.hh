@@ -1,7 +1,9 @@
+#ifndef _TABLICA_HH
+#define _TABLICA_HH
+
 #include <iostream>
 #include <stdio.h>
 #include <cstdlib>
-#include <ctime>
 
 using namespace std;
 
@@ -19,3 +21,5 @@ public:
        void dopisz(); //Metoda powiększająca i dopisująca element do tablicy
        void wielkosc(); //Metoda wypisująca informacje na temat tablicy
 };
+
+#endif

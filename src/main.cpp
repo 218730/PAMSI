@@ -1,17 +1,19 @@
 #include "../inc/tablica.hh"
+#include "../inc/stoper.hh"
+#include "../inc/runIT.hh"
 
 using namespace std;
 
 int main(){
         
     tablica t;
-    clock_t start,stop;
+	Stoper stoper;
             
-        start=clock();
+stoper.start();
     t.dopisz();
-        stop=clock();
+stoper.stop();
 
-            cout << "Czas dzialania skryptu: " << 1000./CLOCKS_PER_SEC*(stop-start) << "[ms]" << endl << endl;
+            cout << "Czas dzialania skryptu: " << stoper.czas_wykonania() << "[ms]" << endl << endl;
             t.wielkosc();
 return 0;   
 }

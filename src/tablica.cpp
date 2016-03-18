@@ -26,7 +26,7 @@ void tablica::dopisz()
         srand(time(NULL));
 		int random = 0;
 	
-    for(int i=0;i<1000000000;i++){
+    for(int i=0;i<1000;i++){
                 random = rand()%1000;
 
      if(liczbaEl>=k)
