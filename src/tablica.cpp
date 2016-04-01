@@ -23,21 +23,21 @@ void tablica::wyswietlanie(){
 
 void tablica::dopisz()
 {
-        srand(time(NULL));
+		srand(time(NULL));
 		int random = 0;
 	
-    for(int i=0;i<1000;i++){
+    for(unsigned int i=0;i<this->rozmiar;i++){
                 random = rand()%1000;
 
      if(liczbaEl>=k)
        {
-            int *TymTab = new int [k]; 
+            int * TymTab = new int[k]; 
                 for(int a=0; a<liczbaEl;a++)    //Przepisywanie tablicy do tab. tymaczasowej
             {
                 TymTab[a] = tab[a];
             }
 
-            k *= 2; //Ile nowych kolumn tablicy chcemy stworzyć za jednym razem
+            k += 1; //Ile nowych kolumn tablicy chcemy stworzyć za jednym razem
 			delete [] tab;
             tab = new int[k];  //Tworzenie nowej tablicy z nową ilością kolumn
 
@@ -61,3 +61,8 @@ void tablica::wielkosc(){
     cout << "Wielkosc tablicy: " << k << endl;
     cout << "Ilosc elementow:  " << liczbaEl << endl;
 }
+
+void tablica::ustawliczbetestow(unsigned int t){
+	this->rozmiar = t;
+	}
+

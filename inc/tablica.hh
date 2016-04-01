@@ -4,22 +4,33 @@
 #include <iostream>
 #include <stdio.h>
 #include <cstdlib>
+#include "../inc/runIT.hh"
 
 using namespace std;
 
-class tablica {
+class Itablica{
+public:
+	virtual void dopisz() = 0;
+	virtual void wyswietlanie() = 0;
+	virtual void wielkosc() = 0;
+	virtual ~Itablica(){};
+	};
 
-private:    
-        int k; //Liczba kolumn tablicy
-        int *tab; //Tablica dynamiczna
-        int liczbaEl; //Liczba elementów tablicy
+class tablica : public Itablica{
+private:
+		int k; //Liczba kolumn tablicy
+		int *tab; //Tablica dynamiczna
+		int liczbaEl; //Liczba elementów tablicy
+		unsigned int rozmiar;
+
  
 public:    
        tablica(); //Konstruktor
        ~tablica(); //Dekonstruktor
-       void wyswietlanie(); //Metoda wyświetlająca tablicę
-       void dopisz(); //Metoda powiększająca i dopisująca element do tablicy
-       void wielkosc(); //Metoda wypisująca informacje na temat tablicy
+       virtual void wyswietlanie(); //Metoda wyświetlająca tablicę
+       virtual void dopisz(); //Metoda powiększająca i dopisująca element do tablicy
+       virtual void wielkosc(); //Metoda wypisująca informacje na temat tablicy
+	   virtual void ustawliczbetestow(unsigned int t);
 };
 
 #endif

@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <ctime>
+#include "../inc/runIT.hh"
 
 using namespace std;
 
@@ -13,16 +14,18 @@ class IStoper{
 virtual void start() = 0;
 virtual void stop() = 0;
 virtual long double czas_wykonania() = 0;
+virtual ~IStoper(){}
 	};
 	
 class Stoper : public IStoper{
-	private:
+private:
 clock_t poczatek, koniec;
 long double czas;
 	public:
 virtual void start();
 virtual void stop();
 virtual long double czas_wykonania();
+
 };
 
 #endif

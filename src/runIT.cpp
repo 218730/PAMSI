@@ -1,17 +1,17 @@
 #include "../inc/runIT.hh"
-
+/*
 using namespace std;
 
-void runnable::przygotuj(){
-
+void runnable::przygotuj(int test){
+run->przygotuj(1000);
 }
 
 void runnable::wykonaj(){
-stoper -> start();
-
-stoper -> stop();
+run->wykonaj();
 }
 
-int runnable::random(){
+//stoper -> start();
 
-}
+//stoper -> stop();
+
+*/
