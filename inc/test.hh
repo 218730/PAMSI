@@ -25,7 +25,6 @@ private:
 	Kolejka kolejka;
 	
 	Stoper S;
-	int liczba_testow;
 	
 public:
 	virtual void Przygotuj();

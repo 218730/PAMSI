@@ -30,6 +30,8 @@ void Lista::Add(int pos,int value)
 	tmp->U_Wartosc(value);
 
 		size++;
+		delete tmp;
+		delete element;
 	}
 	else
 	throw "Out_Of_Range_Exception.";
@@ -37,18 +39,23 @@ void Lista::Add(int pos,int value)
 
 void Lista::Fill(int n)
 {
-	srand(time(NULL));
+srand(time(NULL));
+
 	Wartosc* tmp = head;
 	Wartosc* element;
 	for(int i = 0; i < n; i++)
 	{
-	tmp->U_Wartosc(i);
+		int a=rand()%1000;
+		
+	tmp->U_Wartosc(a);
 	element = new Wartosc();
 	tmp->U_Nastepny(element);
 	tmp = tmp->Z_Nastepny();
 
 	size++;
 	}
+	//delete tmp;
+	delete element;
 }
 
 void Lista::Remove(int pos)
@@ -74,6 +81,7 @@ Wartosc* tmp = head;
 	delete deleted_ptr;
 }
 size--;
+delete tmp;
 	}
 	else
 		throw "Out_Of_Range_Exception.";
@@ -90,6 +98,7 @@ int Lista::Get(int pos)
 		tmp = tmp->Z_Nastepny();
 	}
 		return tmp->Z_Wartosc();
+			delete tmp;
 	}
 	else
 	{
@@ -114,4 +123,6 @@ int Lista::Search()
 
 	}
 	return tmp->Z_Wartosc();
+	
+	delete tmp;
 }
