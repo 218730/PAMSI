@@ -1,16 +1,22 @@
 #include "../inc/tablica.hh"
 #include "../inc/stoper.hh"
-#include "../inc/runIT.hh"
-#include "../inc/test_tablica.hh"
+#include "../inc/test.hh"
+#include "../inc/lista.hh"
+#include "../inc/stos.hh"
+#include "../inc/kolejka.hh"
 
 using namespace std;
 
-int main(){
+int main(int Argc, char* Argv[]){
         
-testowa_tablica tt;
+//test tt;
 
-tt.przygotuj();
-tt.wykonaj();	
+//tt.przygotuj();
+//tt.wykonaj();
+
+Test test;
+test.Przygotuj();
+test.Wykonaj();
 
 return 0;   
 }
