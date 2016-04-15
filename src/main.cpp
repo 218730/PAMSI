@@ -9,19 +9,32 @@
 using namespace std;
 
 int main(int Argc, char* Argv[]){
-        
+        srand(time(NULL));
 //test tt;
 
 //tt.przygotuj();
 //tt.wykonaj();
 
+Lista lista;
+
 Test test;
 test.Przygotuj();
 test.Wykonaj();
 
-Kolejka kolejka;
+/*Kolejka kolejka;
 
-kolejka.Push(10);
+int wielkosc;
+
+cout << "Podaj wielkosc kolejki: ";
+cin >> wielkosc;
+
+for(int i=0; i<wielkosc;i++){
+	int a = rand()%100;
+kolejka.Push(a);}*/
+
+lista.Fill(10);
+lista.Wypisz();
+lista.Merge_Sort();
 
 return 0;   
 }
