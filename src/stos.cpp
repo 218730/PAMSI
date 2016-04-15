@@ -19,3 +19,9 @@ int Stos::Size()
 {
 	return data.Size();
 }
+
+void Stos::Wypisz(){
+
+data.Wypisz();
+
+}

@@ -9,6 +9,8 @@
 #include "../inc/lista.hh"
 #include "../inc/kolejka.hh"
 #include "../inc/stos.hh"
+#include "../inc/mergesort.hh"
+#include "../inc/quicksort.hh"
 
 class ITest{
 public:
@@ -23,6 +25,9 @@ private:
 	Lista lista;
 	Stos stos;
 	Kolejka kolejka;
+	
+	MergeSort mergesort;
+	QuickSort quicksort;
 	
 	Stoper S;
 	

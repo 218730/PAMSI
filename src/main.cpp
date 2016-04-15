@@ -4,6 +4,7 @@
 #include "../inc/lista.hh"
 #include "../inc/stos.hh"
 #include "../inc/kolejka.hh"
+#include "../inc/mergesort.hh"
 
 using namespace std;
 
@@ -17,6 +18,10 @@ int main(int Argc, char* Argv[]){
 Test test;
 test.Przygotuj();
 test.Wykonaj();
+
+Kolejka kolejka;
+
+kolejka.Push(10);
 
 return 0;   
 }

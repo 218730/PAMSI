@@ -13,7 +13,7 @@ Lista::Lista(){
 
 void Lista::Add(int pos,int value)
 {
-	if(pos < size && pos >= 0)
+	if(pos <= size && pos >= 0)
 	{
 	Wartosc* tmp = head;
 	Wartosc* element = new Wartosc();
@@ -30,11 +30,9 @@ void Lista::Add(int pos,int value)
 	tmp->U_Wartosc(value);
 
 		size++;
-		delete tmp;
-		delete element;
 	}
 	else
-	throw "Out_Of_Range_Exception.";
+	cerr << "Poza zakresem!1" << endl;
 }
 
 void Lista::Fill(int n)
@@ -54,14 +52,14 @@ srand(time(NULL));
 
 	size++;
 	}
-	//delete tmp;
+	
 	delete element;
 }
 
 void Lista::Remove(int pos)
 {
 Wartosc* tmp = head;
-	if(pos < size && pos >= 0)
+	if(pos <= size && pos >= 0)
 {
 	if(pos == 0)
 {
@@ -78,19 +76,18 @@ Wartosc* tmp = head;
 	Wartosc* deleted_ptr = tmp->Z_Nastepny();
 
 	tmp->U_Nastepny(deleted_ptr->Z_Nastepny());
-	delete deleted_ptr;
+	//delete deleted_ptr;
 }
 size--;
-delete tmp;
 	}
 	else
-		throw "Out_Of_Range_Exception.";
+		cerr << "Poza zakresem!" << endl;
 
 }
 
 int Lista::Get(int pos)
 {
-	if(pos < size && pos >= 0)
+	if(pos <= size && pos >= 0)
 	{
 		Wartosc* tmp = head;
 	for(int i = 0; i < pos;i++)
@@ -102,7 +99,7 @@ int Lista::Get(int pos)
 	}
 	else
 	{
-		throw "Out_Of_Range_Exception.";
+		cerr << "Poza zakresem!" << endl;
 		return -1;
 	}
 }
@@ -126,3 +123,17 @@ int Lista::Search()
 	
 	delete tmp;
 }
+
+void Lista::Wypisz(){
+	
+		Wartosc* tmp = head;	
+	for(int i = 0; i < Size();i++)
+	{
+		if(i == 0){cout << tmp->Z_Wartosc() << endl;}
+		if(i>0){
+		tmp = tmp->Z_Nastepny();
+		cout << tmp->Z_Wartosc() << endl;
+	}
+	}
+	cout << endl << "Wielkosc listy: " << Size() << endl;
+	}

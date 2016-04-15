@@ -26,6 +26,7 @@ public:
 	virtual int Pop ();
 	virtual void Push(int val);
 	virtual int Size();
+	void Wypisz();
 };
 
 #endif

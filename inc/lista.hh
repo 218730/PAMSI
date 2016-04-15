@@ -31,6 +31,7 @@ public:
 	void Fill (int n);
 	int Search ();
 	Lista ();
+	void Wypisz();
 };
 
 #endif
