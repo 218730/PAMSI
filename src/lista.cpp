@@ -11,6 +11,10 @@ Lista::Lista(){
 	head->U_Wartosc(0);
 }
 
+Lista::~Lista(){
+	while(head) Remove(0);
+	}
+
 void Lista::Add(int pos,int value)
 {
 	if(pos <= size && pos >= 0)
@@ -136,4 +140,82 @@ void Lista::Wypisz(){
 	}
 	}
 	cout << endl << "Wielkosc listy: " << Size() << endl;
+	}
+	
+	
+	
+	
+	
+	
+void Lista::Split(Lista & l1, Lista & l2){
+	Wartosc* p1, *p2;
+	bool s =false;
+	l1.Add(0,0);
+	l2.Add(0,0);
+	p1 = l1.head;
+	p2 = l2.head;
+	
+	while(head)
+	{
+		if(s)
+		{
+			p2->U_Nastepny(head);
+			p2 = p2->Z_Nastepny();
+			}
+		else
+			{
+			p1->U_Nastepny(head);
+			p1 = p1->Z_Nastepny();
+			}
+			head = head->Z_Nastepny();
+			s = !s;
+		}
+		p1->U_Nastepny(NULL);
+		p2->U_Nastepny(NULL);
+		l1.Remove(0);
+		l2.Remove(0);
+	}
+	
+void Lista::Merge(Lista & l1, Lista & l2){
+	Wartosc* p;
+	Add(0,0);
+	p = head;
+	
+	while(l1.head && l2.head){
+		if(l1.head->Z_Wartosc() > l2.head->Z_Wartosc()){
+			p->U_Nastepny(l2.head);
+			l2.head = l2.head->Z_Nastepny();
+			}
+		else{
+			p->U_Nastepny(l1.head);
+			l1.head = l1.head->Z_Nastepny();
+			}
+		p = p->Z_Nastepny();
+		}
+	while(l1.head){
+		p->U_Nastepny(l1.head);
+		l1.head = l1.head->Z_Nastepny();
+		p = p->Z_Nastepny();
+		}
+		
+		while(l2.head){
+			p->U_Nastepny(l2.head);
+			l2.head = l2.head->Z_Nastepny();
+			p = p->Z_Nastepny();
+			}
+	Remove(0);
+}
+
+
+void Lista::Merge_Sort(){
+	Lista h1, h2;
+	
+	if(head && head->Z_Nastepny()){
+		Split(h1, h2);
+		h1.Merge_Sort();
+		h2.Merge_Sort();
+		Merge(h1, h2);
+		}
+	
+	
 	}

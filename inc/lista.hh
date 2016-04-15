@@ -31,7 +31,12 @@ public:
 	void Fill (int n);
 	int Search ();
 	Lista ();
+	~Lista();
 	void Wypisz();
+	
+	void Split(Lista & l1, Lista & l2);
+	void Merge(Lista & l1, Lista & l2);
+	void Merge_Sort();
 };
 
 #endif

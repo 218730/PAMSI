@@ -14,10 +14,9 @@ void Test::Przygotuj(){
 	   cin >> tmp;
 	   
 	   Lista:*/
-	   tmp = 100000000;
-	   srand(time(NULL));
-	   //Lista* l;
-	lista.Fill(tmp);
+	   tmp = 10;
+		srand(time(NULL));
+		//lista.Fill(tmp);
 	
 	/*for(int i=0; i<tmp; i++){
 		int a=rand()%10;
@@ -37,14 +36,20 @@ void Test::Wykonaj(){
 S.start();
 //dyn_tab.dopisz();
 //lista.Search();
+
+//lista.Wypisz();
+//lista.Merge_Sort();
+//lista.Wypisz();
+
 //mergesort.ListToArray(&lista);
 //mergesort.WypiszTab();
-quicksort.ListToArray(&lista);
+
+//quicksort.ListToArray(&lista);
 //quicksort.WypiszTab();
 S.stop();
 
 //stos.Wypisz();
-//lista.Wypisz();
+lista.Wypisz();
 
 //mergesort.ListToArray(&lista);
 //mergesort.WypiszTab();
