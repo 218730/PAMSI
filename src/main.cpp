@@ -15,8 +15,6 @@ int main(int Argc, char* Argv[]){
 //tt.przygotuj();
 //tt.wykonaj();
 
-Lista lista;
-
 Test test;
 test.Przygotuj();
 test.Wykonaj();
@@ -31,10 +29,6 @@ cin >> wielkosc;
 for(int i=0; i<wielkosc;i++){
 	int a = rand()%100;
 kolejka.Push(a);}*/
-
-lista.Fill(10);
-lista.Wypisz();
-lista.Merge_Sort();
 
 return 0;   
 }

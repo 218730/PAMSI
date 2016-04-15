@@ -51,12 +51,6 @@ S.stop();
 //stos.Wypisz();
 lista.Wypisz();
 
-//mergesort.ListToArray(&lista);
-//mergesort.WypiszTab();
-
-//quicksort.ListToArray(&lista);
-//quicksort.WypiszTab();
-
 //dyn_tab.wielkosc();
 cout << endl << "Czas dzialania skryptu: " << S.czas_wykonania() << "[ms]" << endl << endl;
 }

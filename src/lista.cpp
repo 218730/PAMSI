@@ -146,7 +146,7 @@ void Lista::Wypisz(){
 	
 	
 	
-	
+	/*
 void Lista::Split(Lista & l1, Lista & l2){
 	Wartosc* p1, *p2;
 	bool s =false;
@@ -219,3 +219,4 @@ void Lista::Merge_Sort(){
 	
 	
 	}
+*/
