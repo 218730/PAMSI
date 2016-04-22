@@ -23,3 +23,8 @@ Wartosc::Wartosc(){
 	wartosc = 0;
 	nastepna = 0;
 	}
+	
+Wartosc::Wartosc(int x){
+	wartosc = x;
+	nastepna = 0;
+	}

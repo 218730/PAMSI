@@ -29,14 +29,10 @@ public:
 	virtual int Get (int pos);
 	virtual int Size ();
 	void Fill (int n);
-	int Search ();
+	int Search (int value);
 	Lista ();
 	~Lista();
 	void Wypisz();
-	/*
-	void Split(Lista & l1, Lista & l2);
-	void Merge(Lista & l1, Lista & l2);
-	void Merge_Sort();*/
 };
 
 #endif

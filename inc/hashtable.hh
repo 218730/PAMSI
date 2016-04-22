@@ -8,15 +8,26 @@
 
 #include "../inc/lista.hh"
 
-class HashTable{
+#define TABLICAPOCZATKOWA 10
+
+using namespace std;
+
+class IHashTable{
+public:
+	virtual int hash(string ItemKey) = 0;
+	};
+
+class HashTable : public IHashTable{
 private:
-	int key;
-	int value;
+	Lista* tablica;
 	
 public:
-	HashTable(int key, int value);
-	int GetKey;
-	int GetValue;
+	friend class AsocTab;
+
+	HashTable();
+	~HashTable();
+	virtual int hash(string ItemKey);
+
 	};
 
 #endif

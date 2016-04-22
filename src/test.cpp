@@ -14,8 +14,14 @@ void Test::Przygotuj(){
 	   cin >> tmp;
 	   
 	   Lista:*/
-	   tmp = 10;
-		srand(time(NULL));
+	   tmp = 8;
+	   string wyraz;
+	   
+	for(unsigned int i=0; i<tmp; i++){
+		wyraz += RandomString();}
+		
+		cout << wyraz;
+		//srand(time(NULL));
 		//lista.Fill(tmp);
 	
 	/*for(int i=0; i<tmp; i++){
@@ -49,8 +55,18 @@ S.start();
 S.stop();
 
 //stos.Wypisz();
-lista.Wypisz();
+//lista.Wypisz();
 
 //dyn_tab.wielkosc();
 cout << endl << "Czas dzialania skryptu: " << S.czas_wykonania() << "[ms]" << endl << endl;
 }
+
+char Test::RandomString(){
+	static const char alphanum[] =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+"abcdefghijklmnopqrstuvwxyz";
+	
+	int stringLength = sizeof(alphanum) - 1;
+	
+	return alphanum[rand() % stringLength];
+	}

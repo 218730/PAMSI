@@ -12,6 +12,7 @@ public:
 	void  U_Wartosc(int val);
 	int   Z_Wartosc();
 	Wartosc();
+	Wartosc(int x);
 };
 
 #endif

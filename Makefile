@@ -1,7 +1,7 @@
 CXXFLAGS=-g -Iinc -Wall -pedantic -std=c++11
 
-program: obj obj/main.o obj/tablica.o obj/stoper.o obj/test.o obj/lista.o obj/kolejka.o obj/stos.o obj/wartosc.o obj/quicksort.o obj/mergesort.o
-	g++ -Wall -pedantic -std=c++11 -o program obj/main.o obj/tablica.o obj/stoper.o obj/test.o obj/lista.o obj/kolejka.o obj/stos.o obj/wartosc.o obj/quicksort.o obj/mergesort.o
+program: obj obj/main.o obj/tablica.o obj/stoper.o obj/test.o obj/lista.o obj/kolejka.o obj/stos.o obj/wartosc.o obj/quicksort.o obj/mergesort.o obj/hashtable.o obj/asoctab.o
+	g++ -Wall -pedantic -std=c++11 -o program obj/main.o obj/tablica.o obj/stoper.o obj/test.o obj/lista.o obj/kolejka.o obj/stos.o obj/wartosc.o obj/quicksort.o obj/mergesort.o obj/hashtable.o obj/asoctab.o
 
 obj:
 	 mkdir obj
@@ -35,5 +35,11 @@ obj/quicksort.o: src/quicksort.cpp inc/quicksort.hh
 
 obj/mergesort.o: src/mergesort.cpp inc/mergesort.hh
 	g++ -c ${CXXFLAGS} -o obj/mergesort.o src/mergesort.cpp
+
+obj/hashtable.o: src/hashtable.cpp inc/hashtable.hh
+	g++ -c ${CXXFLAGS} -o obj/hashtable.o src/hashtable.cpp
+
+obj/asoctab.o: src/asoctab.cpp inc/asoctab.hh
+	g++ -c ${CXXFLAGS} -o obj/asoctab.o src/asoctab.cpp
 clean:
 	rm -f obj/*.o program

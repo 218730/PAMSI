@@ -7,17 +7,28 @@
 #include <string>
 
 #include "../inc/lista.hh"
+#include "../inc/hashtable.hh"
 
 using namespace std;
 
-class AsocTab{
+class IAsocTab{
+public:
+	virtual void Add(string newItem) = 0;
+	virtual void removeItem(string ItemKey) = 0;
+	virtual void PrintTable() = 0;
+	};
+
+class AsocTab : public IAsocTab{
 private:
-	Lista data;
-	string name;	
+	HashTable hashtable;
+	int dlugosc;
 	
 public:
-	int Size();
-	void Add(string name, ,Lista data);
+	AsocTab();
+	~AsocTab();
+	virtual void Add(string newItem);
+	virtual void removeItem(string ItemKey);
+	virtual void PrintTable();
 	};
 
 #endif

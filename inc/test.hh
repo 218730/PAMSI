@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <cstdlib>
+#include <string>
 #include "../inc/tablica.hh"
 #include "../inc/stoper.hh"
 #include "../inc/lista.hh"
@@ -34,6 +35,7 @@ private:
 public:
 	virtual void Przygotuj();
 	virtual void Wykonaj();
+	char RandomString();
 	};
 
 
