@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <string>
+#include <algorithm>
 #include "../inc/tablica.hh"
 #include "../inc/stoper.hh"
 #include "../inc/lista.hh"
@@ -12,6 +13,9 @@
 #include "../inc/stos.hh"
 #include "../inc/mergesort.hh"
 #include "../inc/quicksort.hh"
+#include "../inc/asoctab.hh"
+#include "../inc/drzewo.hh"
+
 
 class ITest{
 public:
@@ -31,11 +35,16 @@ private:
 	QuickSort quicksort;
 	
 	Stoper S;
+	Stoper S1;
+	
+	AsocTab asoctab;
+	
+	Drzewo drzewo;
 	
 public:
 	virtual void Przygotuj();
 	virtual void Wykonaj();
-	char RandomString();
+	string RandomString();
 	};
 
 

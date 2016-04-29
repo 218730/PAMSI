@@ -5,30 +5,37 @@
 #include <stdio.h>
 #include <cstdlib>
 
+#define BLACK false
+#define RED true
+
 class IDrzewo{
 public:
-	virtual void Dodaj(int element) = 0;
-	virtual int Znajdz(int element) = 0;
-//	virtual ~Drzewo() = 0;
+	virtual void Dodaj(int x) = 0;
+	virtual void Znajdz(int z) = 0;
 
 	};
 
 struct WezelDrzewa{
+	WezelDrzewa* rodzic;
 	WezelDrzewa* prawy;
 	WezelDrzewa* lewy;
-	char kolor;
+	bool kolor;
 	int klucz;
 	
 	};
 	
 class Drzewo : public IDrzewo{
 private:
-	WezelDrzewa wezeldrzewa;
-	WezelDrzewa * korzen;
+	WezelDrzewa* korzen;
 	
 public:
-	virtual void Dodaj(int element);
-	virtual int Znajdz(int element);
+	virtual void Dodaj(int x);
+	void insertfix(WezelDrzewa* t);
+	void leftrotate(WezelDrzewa *p);
+	void rightrotate(WezelDrzewa *p);
+	void WypiszP();
+	void Wypisz(WezelDrzewa *k);
+	virtual void Znajdz(int z);
 	Drzewo();
 	~Drzewo();
 	};

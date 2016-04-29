@@ -2,13 +2,13 @@
 
 using namespace std;
 
-int HashTable::hash(string ItemKey){
+unsigned long int HashTable::hash(string ItemKey){
 	
-	int value = 0;
+	unsigned int value = 0;
+	
 	for ( unsigned int i = 0; i < ItemKey.length(); i++ ){
-	value += ItemKey[i];
-	}
-	//cout << "xxx" << value << "xxx" ;
+	value = value * 7 + ItemKey[i];}
+	
 	return (value);
 }
 

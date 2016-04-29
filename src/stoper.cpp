@@ -11,6 +11,6 @@ koniec = clock();
 }
 
 long double Stoper::czas_wykonania(){
-czas = koniec - poczatek; //[s]
-return czas/1000; //[ms]
+czas = ((float)(koniec - poczatek))/CLOCKS_PER_SEC; //[s]
+return czas*1000; //[ms]
 }

@@ -13,15 +13,16 @@ AsocTab::~AsocTab(){
 
 void AsocTab::Add( string newItem )
 {
-    int index = hashtable.hash( newItem );
-	int indexmod = index % (dlugosc-1);
-    hashtable.tablica[ indexmod ].Add(hashtable.tablica[indexmod].Size(), index);
+    unsigned long int index = hashtable.hash( newItem );
+	//cout << index;
+	int indexmod = index % (dlugosc);
+    hashtable.tablica[ indexmod ].Add(0, index);
 }
 
 void AsocTab::removeItem( string ItemKey )
 {
-    int index = hashtable.hash( ItemKey );
-	int indexmod = index % (dlugosc-1);
+    unsigned long int index = hashtable.hash( ItemKey );
+	int indexmod = index % (dlugosc);
 	
 	hashtable.tablica[ indexmod ].Remove( hashtable.tablica[indexmod].Search(index) );
 

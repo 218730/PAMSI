@@ -1,7 +1,7 @@
 CXXFLAGS=-g -Iinc -Wall -pedantic -std=c++11
 
-program: obj obj/main.o obj/tablica.o obj/stoper.o obj/test.o obj/lista.o obj/kolejka.o obj/stos.o obj/wartosc.o obj/quicksort.o obj/mergesort.o obj/hashtable.o obj/asoctab.o
-	g++ -Wall -pedantic -std=c++11 -o program obj/main.o obj/tablica.o obj/stoper.o obj/test.o obj/lista.o obj/kolejka.o obj/stos.o obj/wartosc.o obj/quicksort.o obj/mergesort.o obj/hashtable.o obj/asoctab.o
+program: obj obj/main.o obj/tablica.o obj/stoper.o obj/test.o obj/lista.o obj/kolejka.o obj/stos.o obj/wartosc.o obj/quicksort.o obj/mergesort.o obj/hashtable.o obj/asoctab.o obj/drzewo.o
+	g++ -Wall -pedantic -std=c++11 -o program obj/main.o obj/tablica.o obj/stoper.o obj/test.o obj/lista.o obj/kolejka.o obj/stos.o obj/wartosc.o obj/quicksort.o obj/mergesort.o obj/hashtable.o obj/asoctab.o obj/drzewo.o
 
 obj:
 	 mkdir obj
@@ -41,5 +41,9 @@ obj/hashtable.o: src/hashtable.cpp inc/hashtable.hh
 
 obj/asoctab.o: src/asoctab.cpp inc/asoctab.hh
 	g++ -c ${CXXFLAGS} -o obj/asoctab.o src/asoctab.cpp
+
+obj/drzewo.o: src/drzewo.cpp inc/drzewo.hh
+	g++ -c ${CXXFLAGS} -o obj/drzewo.o src/drzewo.cpp
+
 clean:
 	rm -f obj/*.o program
