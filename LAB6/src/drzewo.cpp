@@ -11,7 +11,7 @@ void Drzewo::Znajdz(int x){
 		WezelDrzewa *p = korzen;
 		int znalezione = 0;
 		
-		while(p != NULL && znalezione == 0){
+		while(p != &koniec && znalezione == 0){
 			if(p->klucz == x)
 				znalezione = 1;
 				if(znalezione == 0){
@@ -26,19 +26,19 @@ void Drzewo::Znajdz(int x){
 					cout << endl << "\tZnaleziono wezel: ";
 					cout << endl << "Klucz: " << p->klucz;
 					cout << endl << "Kolor: ";
-					if(p->kolor == BLACK)
+					if(p->kolor == 'b')
 						cout << "Black";
 						else
 							cout << "Red";
-							if(p->rodzic != NULL)
+							if(p->rodzic != &koniec && p->rodzic != NULL)
 								cout << endl << "Rodzic: " << p->rodzic->klucz;
 								else 
 									cout << endl << "Brak rodzica tego wezla.";
-									if(p->prawy != NULL)
+									if(p->prawy != &koniec && p->prawy != NULL)
 										cout << endl << "Prawe dziecko: " << p->prawy->klucz;
 										else
 											cout << endl << "Brak prawego dziecka tego wezla.";
-											if(p->lewy != NULL)
+											if(p->lewy != &koniec && p->lewy != NULL)
 												cout << endl << "Lewe dziecko: " << p->lewy->klucz;
 												else
 													cout << endl << "Brak lewego dziecka tego wezla.";
@@ -47,188 +47,177 @@ void Drzewo::Znajdz(int x){
 	}
 	
 void Drzewo::Dodaj(int z){
-	int i = 0;
 	
-	WezelDrzewa *p, *q;
+	WezelDrzewa *p, *q, *y;
 	WezelDrzewa *t = new WezelDrzewa;
 	
 	t->klucz = z;
-	t->lewy = NULL;
-	t->prawy = NULL;
-	t->kolor = RED;
-	
-	p = this->korzen;
-	q = NULL;
-	
-	if(korzen == NULL){
+	t->lewy = &koniec;
+	t->prawy = &koniec;
+	t->rodzic = korzen;
+		
+	if(t->rodzic == &koniec){
 		korzen = t;
-		t->rodzic = NULL;
 		}
-	else{
-		while(p != NULL){
-			q = p;
-			if(p->klucz < t->klucz)
-				p = p->prawy;
-				else
-					p = p->lewy;
-			}
-			t->rodzic = q;
-			if(q->klucz < t->klucz)
-				q->prawy = t;
-				else
-					q->lewy = t;
-		}
-		Drzewo::insertfix(t);
-	}
-	
-void Drzewo::insertfix(WezelDrzewa *t){
-	WezelDrzewa *u, *g;
-	
-		if(korzen == t){
-		t->kolor = BLACK;
-		return ;
-		}
-		while(t->rodzic != NULL && t->rodzic->kolor == 'r'){
-			g = t->rodzic->rodzic;
-			if(t->rodzic == g->lewy){
-				if(g->prawy != NULL){
-					u = g->prawy;
-					if(u->kolor == RED){
-						t->rodzic->kolor = BLACK;
-						u->kolor = BLACK;
-						g->kolor = RED;
-						t = g;
+		else
+			while(true){
+				if(z < t->rodzic->klucz){
+					if(t->rodzic->lewy == &koniec){
+						t->rodzic->lewy = t;
+						break;
 						}
+						t->rodzic = t->rodzic->lewy;
 					}
 					else{
-						if(t->rodzic->prawy == t){
-							t = t->rodzic;
-							leftrotate(t);
+						if(t->rodzic->prawy == &koniec){
+							t->rodzic->prawy = t;
+							break;
 							}
-							t->rodzic->kolor = BLACK;
-							g->kolor = RED;
-							rightrotate(g);
+							t->rodzic = t->rodzic->prawy;
 						}
 				}
-		else{
-					if(g->lewy != NULL){
-						u = g->lewy;
-						if(g->lewy->kolor == RED){
-							t->rodzic->kolor = BLACK;
-							u->kolor = BLACK;
-							g->kolor = RED;
-							t=g;
-							}
+				
+t->kolor = 'r';
+
+while((t != korzen) && (t != NULL) && (t->rodzic != NULL) && (t->rodzic->rodzic != NULL) && (t->rodzic->kolor == 'r')){
+			if(t->rodzic == t->rodzic->rodzic->lewy){
+				y = t->rodzic->rodzic->prawy;
+				
+				if(y != NULL && y->kolor == 'r'){
+					t->rodzic->kolor = 'b';
+					y->kolor = 'b';
+					t->rodzic->rodzic->kolor = 'r';
+					t = t->rodzic->rodzic;
+					}
+					else if(t == t->rodzic->prawy){
+						t = t->rodzic;
+						leftrotate(t);
+						}
+						t->rodzic->kolor = 'b';
+						t->rodzic->rodzic->kolor = 'r';
+						rightrotate(t->rodzic->rodzic);
+						break;
+				}
+				else{
+					y = t->rodzic->rodzic->lewy;
+					if(y!= NULL && y->kolor == 'r'){
+						t->rodzic->kolor = 'b';
+						y->kolor = 'b';
+						t->rodzic->rodzic->kolor = 'r';
+						t = t->rodzic->rodzic;
 						}
 						else{
-							if(t->rodzic->lewy == t){
+							if(t == t->rodzic->lewy){
 								t = t->rodzic;
 								rightrotate(t);
 								}
-								t->rodzic->kolor = BLACK;
-								g->kolor = RED;
-								leftrotate(g);
-							}
+								t->rodzic->kolor = 'b';
+								t->rodzic->rodzic->kolor = 'r';
+								leftrotate(t->rodzic->rodzic);
+								break;
 					}
-				korzen->kolor = BLACK;
 			}
 	}
+korzen->kolor = 'b';
+}
 	
-void Drzewo::leftrotate(WezelDrzewa *p){
-	if(p->prawy == NULL)
-		return;
-		else{
-			WezelDrzewa *y = p->prawy;
-			if(y->lewy != NULL){
-				p->prawy = y->lewy;
-				y->lewy->rodzic = p;
-				}
-				else
-					p->prawy = NULL;
-					if(p->rodzic != NULL)
-						y->rodzic = p->rodzic;
-						if(p->rodzic == NULL)
-							korzen = y;
-							else{
-								if(p == p->rodzic->lewy)
-									p->rodzic->lewy = y;
-									else
-										p->rodzic->prawy = y;
-								}
-								y->lewy = p;
-								p->rodzic = y;
-			}
+void Drzewo::leftrotate(WezelDrzewa *t){
+  WezelDrzewa *x, *y;
+
+y = t->prawy;
+if(y != &koniec){
+	x = t->rodzic;
+	t->prawy = y->lewy;
+if(t->prawy != &koniec) t->prawy->rodzic = t;
+
+	y->lewy = t;
+	y->rodzic = x;
+	t->rodzic = y;
+
+	if(x != &koniec){
+		if(x->lewy == t) x->lewy = y; else x->prawy = y;
 	}
-	
-void Drzewo::rightrotate(WezelDrzewa *p){
-	if(p->lewy == NULL)
-		return ;
-		else{
-			WezelDrzewa *y = p->lewy;
-			if(y->prawy != NULL){
-				p->lewy = y->prawy;
-				y->prawy->rodzic = p;
-				}
-				else
-					p->lewy = NULL;
-					if(p->rodzic != NULL)
-						y->rodzic = p->rodzic;
-						if(p->rodzic == NULL)
-							korzen = y;
-							else{
-								if(p == p->rodzic->lewy)
-									p->rodzic->lewy = y;
-									else
-										p->rodzic->prawy = y;
-								}
-								y->prawy = p;
-								p->rodzic = y;
-			}
+	else korzen = y;
 	}
-	
+}
+
+void Drzewo::rightrotate(WezelDrzewa *t){
+  WezelDrzewa *x, *y;
+
+y = t->lewy;
+if(y != &koniec){
+	x = t->rodzic;
+	t->lewy = y->prawy;
+	if(t->lewy != &koniec) t->lewy->rodzic = t;
+
+	y->prawy = t;
+	y->rodzic = x;
+	t->rodzic = y;
+
+	if(x != &koniec){
+		if(x->lewy == t) x->lewy = y; else x->prawy = y;
+	}
+	else korzen = y;
+	}
+}
+
 void Drzewo::WypiszP(){
 	Wypisz(korzen);
 	}
 	
 void Drzewo::Wypisz(WezelDrzewa *k){
-	if(korzen == NULL){
+	if(korzen == &koniec || korzen == NULL){
 		cout << endl << "Drzewo puste." << endl;
 		return ;
 		}
-	if(k != NULL){
+	if(k != &koniec && k != NULL){
 		cout << endl << "\tWEZEL: ";
 		cout << endl << "Klucz: " << k->klucz;
 		cout << endl << "Kolor: ";
-		if(k->kolor == BLACK)
+		if(k->kolor == 'b')
 			cout << "Black";
-			else
+			else if(k->kolor == 'r')
 				cout << "Red";
-				if(k->rodzic != NULL)
+				else cout << "Brak danych.";
+				if(k->rodzic != &koniec && k->rodzic != NULL)
 					cout << endl << "Rodzic: " << k->rodzic->klucz;
 					else
 						cout << endl << "Brak rodzica.";
-						if(k->prawy != NULL)
+						if(k->prawy != &koniec && k->prawy != NULL)
 							cout << endl << "Prawe dziecko: " << k->prawy->klucz;
 							else
 								cout << endl << "Brak prawego dziecka.";
-								if(k->lewy != NULL)
+								if(k->lewy != &koniec && k->lewy != NULL)
 									cout << endl << "Lewe dziecko: " << k->lewy->klucz;
 									else
 										cout << endl << "Brak lewego dziecka.";
 										cout << endl;
-										if(k->lewy){
+										if(k->lewy && k->lewy != &koniec){
 											cout << endl << "Lewy: "; 
 										Wypisz(k->lewy);}
-											if(k->prawy){
+											if(k->prawy && k->prawy != &koniec){
 												cout << endl << "Prawy: "; 
 											Wypisz(k->prawy);}
 		}
 	}
 	
+void Drzewo::Delete(WezelDrzewa *t){
+	
+if(t != &koniec){
+	Delete(t->lewy);
+	Delete(t->prawy);
+	delete t;
+	}
+}
+	
 Drzewo::Drzewo(){
-	korzen = NULL;
+	korzen = &koniec;
+	koniec.kolor = 'r';
+	koniec.lewy = &koniec;
+	koniec.prawy = &koniec;
+	koniec.rodzic = &koniec;
 	}
 
 Drzewo::~Drzewo(){
-	
-	}
+	Delete(korzen);
+}

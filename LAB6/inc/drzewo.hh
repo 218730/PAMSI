@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include <cstdlib>
 
-#define BLACK false
-#define RED true
+//#define BLACK false
+//#define RED true
 
 class IDrzewo{
 public:
@@ -19,7 +19,7 @@ struct WezelDrzewa{
 	WezelDrzewa* rodzic;
 	WezelDrzewa* prawy;
 	WezelDrzewa* lewy;
-	bool kolor;
+	char kolor;
 	int klucz;
 	
 	};
@@ -27,15 +27,17 @@ struct WezelDrzewa{
 class Drzewo : public IDrzewo{
 private:
 	WezelDrzewa* korzen;
+	WezelDrzewa koniec;
 	
 public:
 	virtual void Dodaj(int x);
-	void insertfix(WezelDrzewa* t);
-	void leftrotate(WezelDrzewa *p);
-	void rightrotate(WezelDrzewa *p);
+	//void insertfix(WezelDrzewa* t);
+	void leftrotate(WezelDrzewa *t);
+	void rightrotate(WezelDrzewa *t);
 	void WypiszP();
 	void Wypisz(WezelDrzewa *k);
 	virtual void Znajdz(int z);
+	void Delete(WezelDrzewa *p);
 	Drzewo();
 	~Drzewo();
 	};

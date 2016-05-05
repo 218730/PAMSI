@@ -12,44 +12,10 @@
 using namespace std;
 
 int main(int Argc, char ** Argv){
-        srand(time(NULL));
-//test tt;
-
-//tt.przygotuj();
-//tt.wykonaj();
 
 Test test;
 test.Przygotuj();
 test.Wykonaj();
-
-/*Kolejka kolejka;
-
-int wielkosc;
-
-cout << "Podaj wielkosc kolejki: ";
-cin >> wielkosc;
-
-for(int i=0; i<wielkosc;i++){
-	int a = rand()%100;
-kolejka.Push(a);}*/
-
-//AsocTab asoctab;
-//asoctab.Add("Przemyslaw");
-//asoctab.Add("Brzeczyszczykiewicz");
-
-//asoctab.PrintTable();
-
-//cout << endl;
-//asoctab.removeItem("Brzeczyszczykiewicz"); 
-
-//asoctab.PrintTable();
-
-//cout << endl;
-
-//Drzewo drzewo;
-
-
-
 
 return 0;   
 }

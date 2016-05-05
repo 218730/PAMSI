@@ -35,7 +35,6 @@ private:
 	QuickSort quicksort;
 	
 	Stoper S;
-	Stoper S1;
 	
 	AsocTab asoctab;
 	
