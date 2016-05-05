@@ -48,7 +48,7 @@ void Drzewo::Znajdz(int x){
 	
 void Drzewo::Dodaj(int z){
 	
-	WezelDrzewa *p, *q, *y;
+	WezelDrzewa *y;
 	WezelDrzewa *t = new WezelDrzewa;
 	
 	t->klucz = z;
