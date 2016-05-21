@@ -1,1 +1,1 @@
-# Sieci
+# Sieci neuronowe: Rozpoznawanie liter - PAMSI
