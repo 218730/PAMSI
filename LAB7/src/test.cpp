@@ -32,7 +32,7 @@ graf->Sasiedzi(1);
 
 cout << endl << endl;
 
-//szukajgrafu->BFS_Path(1, 3, graf);
+szukajgrafu->BFS_Path(1, 3, graf);
 //szukajgrafu->DFS_Path(1, 3, graf);
 
 							S.stop();
