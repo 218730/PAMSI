@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 
-# szkic:	<X>    -> (*W1) ->    <Hin -> (sigmoid) -> Hout>    -> (*W2) ->    <Yin -> (sigmoid) -> Yout>
+# szkic:	<X>	-> (*W1) ->	<Hin -> (sigmoid) -> Hout>	-> (*W2) ->	<Yin -> (sigmoid) -> Yout>
 #		wejscie		wagi 1			warstwa ukryta				wagi 2				wyjscie
 
 class NeuralNetwork(object):
@@ -40,6 +40,49 @@ class NeuralNetwork(object):
 		dCdW1 = np.dot(X.T, delta1)
 		return dCdW1, dCdW2
 
+	# Funkcje pomocnicze:
+	def getWeightsVector(self):
+		weights = np.concatenate((self.W1.ravel(), self.W2.ravel()))
+		return weights
+
+	def setWeightsFromVector(self, weights):
+		W1_start = 0
+		W1_end = self.hiddenLayerSize * self.inputLayerSize
+		self.W1 = np.reshape(weights[W1_start:W1_end], (self.inputLayerSize , self.hiddenLayerSize))
+		W2_end = W1_end + self.hiddenLayerSize*self.outputLayerSize
+		self.W2 = np.reshape(weights[W1_end:W2_end], (self.hiddenLayerSize, self.outputLayerSize))
+
+	def getGradientsVector(self, X, Y):
+		dCdW1, dCdW2 = self.dCostFunction(X, Y)
+		return np.concatenate((dCdW1.ravel(), dCdW2.ravel()))
+
+	def getNumericalGradientsVector(self, X, Y):
+		orgWeights = self.getWeightsVector()
+		numGrad = np.zeros(orgWeights.shape)
+		perturbations = np.zeros(orgWeights.shape)
+		eps = 0.0001
+		for i in range(len(orgWeights)):
+			perturbations[i] = eps
+			self.setWeightsFromVector(orgWeights + perturbations)
+			loss2 = self.costFunction(X, Y)
+			self.setWeightsFromVector(orgWeights - perturbations)
+			loss1 = self.costFunction(X, Y)
+			# pochodna z definicji
+			numGrad[i] = (loss2 - loss1) / (2*eps)
+			perturbations[i] = 0
+		self.setWeightsFromVector(orgWeights)
+		return numGrad
+
+	def testGradientsComputation(self, X, Y):
+		numGrad = self.getNumericalGradientsVector(X, Y)
+		grad = self.getGradientsVector(X, Y)
+		difference = np.linalg.norm(grad - numGrad) / np.linalg.norm(grad + numGrad)
+		if difference > 1e-9:
+			print "Possibly significant gradients difference!"
+		return difference
+
+
+
 if __name__ == "__main__":
 	def decreaseCost(nn,X,Y, dW):
 		dCdW1, dCdW2 = nn.dCostFunction(X, Y)
@@ -57,6 +100,8 @@ if __name__ == "__main__":
 	print Y
 	print("Output:")
 	nn.push(X)
+	print("Gradient computation test:")
+	print nn.testGradientsComputation(X, Y)
 	print nn.Yout
 	print("Cost:")
 	print nn.costFunction(X,Y)
@@ -67,3 +112,5 @@ if __name__ == "__main__":
 	print decreaseCost(nn, X, Y, 0.01)
 	print("Output:")
 	print nn.Yout
+	print("Gradient computation test:")
+	print nn.testGradientsComputation(X, Y)
