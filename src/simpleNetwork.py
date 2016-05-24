@@ -41,12 +41,29 @@ class NeuralNetwork(object):
 		return dCdW1, dCdW2
 
 if __name__ == "__main__":
+	def decreaseCost(nn,X,Y, dW):
+		dCdW1, dCdW2 = nn.dCostFunction(X, Y)
+		nn.W1 -= dW * dCdW1
+		nn.W2 -= dW * dCdW2
+		return nn.costFunction(X, Y)
 	nn = NeuralNetwork()
-	randInt = lambda: int(np.random.rand() * 10)
-	X = np.array([[10,5], [4,4], [3,6]], dtype=float)
-	#X = np.array([[randInt(),randInt()], [randInt(),randInt()], [randInt(),randInt()]], dtype=float)
+	X = np.array([[10,5], [4,4], [1,6]], dtype=float)
+	Y = np.array([[91], [54], [7]], dtype=float)
+	X /= 10	# znormalizowane
+	Y /= 100 # znormalizowane
 	print("Input:")
 	print X
-	print("Output")
-	print nn.push(X)
-	
+	print("Desired output:")
+	print Y
+	print("Output:")
+	nn.push(X)
+	print nn.Yout
+	print("Cost:")
+	print nn.costFunction(X,Y)
+	for i in range(99999):
+		decreaseCost(nn, X, Y, 0.01)
+	print("After decreasing cost 100000 times:")
+	print("Cost:")
+	print decreaseCost(nn, X, Y, 0.01)
+	print("Output:")
+	print nn.Yout
