@@ -29,3 +29,21 @@ do ważnych pytań, jak np - dlaczego czas zapisu do tablicy jest zależny od li
 Dlaczego czas odczytu jest o rząd wielkości krótszy niż czas zapisu?
 
 **Ocena: 3,5**
+
+# Lab7 - drzewa
+
+Wnioski ze sprawozdania nie są wystarczająco przekonujące.
+
+Ocena: 4,5
+
+# Lab8 - grafy (dfs,bfs)
+
+brak zad
+
+Ocena: 2
+
+# Lab9 - grafy (b&b)
+
+brak zad
+
+Ocena: 2
